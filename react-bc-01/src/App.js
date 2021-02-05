@@ -1,14 +1,14 @@
-import './App.css';
-import Content from './components/Content';
-import Footer from './components/Footer';
-import Header from './components/Header';
+import DemoProps from './Props/DemoProps';
+import BaiTapRenderMap from './RenderWithMap/BaiTapRenderMap';
+import RenderWithMap from './RenderWithMap/RenderWithMap';
+
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Content />
-      <Footer />
+      {/* <RenderWithMap /> */}
+      {/* <BaiTapRenderMap /> */}
+      <DemoProps />
     </div>
   );
 }
