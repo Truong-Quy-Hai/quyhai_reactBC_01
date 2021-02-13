@@ -1,0 +1,42 @@
+.App {
+  width              : 100%;
+  min-height         : 100vh;
+  overflow           : hidden;
+  background-repeat  : no-repeat;
+  background-size    : cover;
+  background-position: center top;
+}
+
+.main-header {
+  background     : rgba(0, 0, 0, .7);
+  height         : 100px;
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+  font-size      : 30px;
+  font-weight    : 600;
+  letter-spacing : 1px;
+  color          : #fff;
+}
+
+.glassesContainer {
+  background: #fff;
+  margin-top: 64px;
+  padding   : 20px;
+}
+
+.glassesContainer .glasses {
+  width : 100px;
+  margin: 10px;
+}
+
+.model {
+  position: relative;
+}
+
+.modelGlasses {
+  position: absolute;
+  top     : 90px;
+  left    : 80px;
+  width   : 140px;
+}
