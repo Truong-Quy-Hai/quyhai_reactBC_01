@@ -1,14 +1,10 @@
 import './App.css';
-import Content from './components/Content';
-import Footer from './components/Footer';
-import Header from './components/Header';
+import DemoQLSP from './DemoQLSP/DemoQLSP';
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Content />
-      <Footer />
+      <DemoQLSP />
     </div>
   );
 }
