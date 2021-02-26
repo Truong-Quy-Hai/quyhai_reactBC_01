@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ChiTietSP from './ChiTietSP';
+import GioHang from './GioHang';
 import SanPham from './SanPham';
 
 export default class DemoQLSP extends Component {
@@ -47,20 +48,37 @@ export default class DemoQLSP extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sp: null
+      sp: null,
+      gioHang: []
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(id) {
-    this.setState({ sp: this.mangSanPham.filter(sp => sp.maSP === id)[0] });
+    this.setState({ sp: this.mangSanPham.find(sp => sp.maSP === id) });
+  }
+
+  // Hàm xử lý làm thay đổi state sẽ được đặt tại component chứa state
+  themGioHang = (spClick) => {
+    this.setState(state => {
+      if (state.gioHang.findIndex(sp => sp.maSP === spClick.maSP) === -1) return { gioHang: [...state.gioHang, {...spClick, soLuong: 1}] }
+      let newGioHang = state.gioHang.map(sp => sp.maSP === spClick.maSP ? { ...sp, soLuong: sp.soLuong + 1 } : sp)
+      return { gioHang: [...newGioHang] }
+      // gioHang: giỏ hàng mới
+    })
+  }
+
+  xoaSP = (maSP) => {
+    this.setState(state => ({
+      gioHang: state.gioHang.filter(sp => sp.maSP !== maSP)
+    }))
   }
 
   renderSP() {
     return (
       this.mangSanPham.map(
         (sp) => (
-          <SanPham key={sp.maSP} sp={sp} onClick={this.handleClick} />
+          <SanPham key={sp.maSP} sp={sp} onClick={this.handleClick} themGioHang={this.themGioHang}/>
         )
       )
     )
@@ -69,6 +87,9 @@ export default class DemoQLSP extends Component {
   render() {
     return (
       <div className="container">
+        <h1 className="mt-4">Giỏ hàng</h1>
+        <GioHang gioHang={this.state.gioHang} xoaGioHang={this.xoaSP}/>
+
         <div className="row mb-5">
           {this.renderSP()}
         </div>
