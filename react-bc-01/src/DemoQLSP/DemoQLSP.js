@@ -61,11 +61,21 @@ export default class DemoQLSP extends Component {
   // Hàm xử lý làm thay đổi state sẽ được đặt tại component chứa state
   themGioHang = (spClick) => {
     this.setState(state => {
-      if (state.gioHang.findIndex(sp => sp.maSP === spClick.maSP) === -1) return { gioHang: [...state.gioHang, {...spClick, soLuong: 1}] }
+      if (state.gioHang.findIndex(sp => sp.maSP === spClick.maSP) === -1) return { gioHang: [...state.gioHang, { ...spClick, soLuong: 1 }] }
       let newGioHang = state.gioHang.map(sp => sp.maSP === spClick.maSP ? { ...sp, soLuong: sp.soLuong + 1 } : sp)
       return { gioHang: [...newGioHang] }
       // gioHang: giỏ hàng mới
     })
+  }
+
+  tangGiamSoLuong = (maSP, soLuong) => {
+    let gioHangUpdate = [...this.state.gioHang]
+    let index = gioHangUpdate.findIndex(sp => sp.maSP === maSP)
+    if (index !== -1) {
+      gioHangUpdate[index].soLuong += soLuong
+      if (!gioHangUpdate[index].soLuong) gioHangUpdate.splice(index, 1)
+      this.setState({ gioHang: gioHangUpdate })
+    }
   }
 
   xoaSP = (maSP) => {
@@ -78,7 +88,7 @@ export default class DemoQLSP extends Component {
     return (
       this.mangSanPham.map(
         (sp) => (
-          <SanPham key={sp.maSP} sp={sp} onClick={this.handleClick} themGioHang={this.themGioHang}/>
+          <SanPham key={sp.maSP} sp={sp} onClick={this.handleClick} themGioHang={this.themGioHang} />
         )
       )
     )
@@ -88,7 +98,7 @@ export default class DemoQLSP extends Component {
     return (
       <div className="container">
         <h1 className="mt-4">Giỏ hàng</h1>
-        <GioHang gioHang={this.state.gioHang} xoaGioHang={this.xoaSP}/>
+        <GioHang gioHang={this.state.gioHang} xoaGioHang={this.xoaSP} tangGiamSoLuong={this.tangGiamSoLuong} />
 
         <div className="row mb-5">
           {this.renderSP()}
