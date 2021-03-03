@@ -18,14 +18,18 @@ class GioHangRedux extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.gioHang.map(sp => (
-              <tr>
+            {this.props.gioHang.map((sp, index) => (
+              <tr key={index}>
                 <td>{sp.maSP}</td>
                 <td>{sp.tenSP}</td>
-                <td>{sp.soLuong}</td>
-                <td>{sp.gia}</td>
-                <td>{sp.gia * sp.soLuong}</td>
-                <td><button className="btn btn-danger">Xóa</button></td>
+                <td>
+                  <button className="btn btn-primary mr-2" onClick={() => this.props.thayDoiSoLuong(sp.maSP, 1)}>+</button>
+                  {sp.soLuong}
+                  <button className="btn btn-primary ml-2" onClick={() => this.props.thayDoiSoLuong(sp.maSP, -1)}>-</button>
+                  </td>
+                <td>{sp.giaBan}</td>
+                <td>{sp.giaBan * sp.soLuong}</td>
+                <td><button className="btn btn-danger" onClick={() => this.props.xoaSanPham(sp.maSP)}>Xóa</button></td>
               </tr>
             ))
             }
@@ -45,5 +49,16 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    thayDoiSoLuong: (maSP, soLuong) => {
+      dispatch({type: 'thayDoiSoLuong', payload: {maSP, soLuong}})
+    },
+    xoaSanPham: (maSP) => {
+      dispatch({type: 'xoaSanPham', payload: maSP})
+    }
+  }
+}
+
 // Kết nối giữa component và redux
-export default connect(mapStateToProps)(GioHangRedux)
+export default connect(mapStateToProps, mapDispatchToProps)(GioHangRedux)

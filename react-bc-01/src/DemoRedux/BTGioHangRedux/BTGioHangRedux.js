@@ -55,14 +55,14 @@ export default class BTGioHangRedux extends Component {
   render() {
     return (
       <div className="container">
-        <div className="row mt-5">
-            <div className="col-12">
-              <h3>Giỏ hàng</h3>
-              <GioHangRedux />
-            </div>
-          </div>
         <div className="row">
           {this.renderSanPham()}
+        </div>
+        <div className="row mt-5">
+          <div className="col-12">
+            <h3>Giỏ hàng</h3>
+            <GioHangRedux />
+          </div>
         </div>
       </div>
     )

@@ -12,7 +12,7 @@ export default class SanPham extends Component {
             <p className="card-text">{sp.giaBan}</p>
           </div>
           <div className="card-footer">
-            <button className="btn btn-primary mr-2" onClick={() => onClick(sp.maSP)}>
+            <button className="btn btn-primary mr-2" onClick={onClick.bind(this, sp.maSP)}>
               Thông tin chi tiết
             </button>
             <button className="btn btn-danger" onClick={() => this.props.themGioHang(sp)}>Thêm giỏ hàng</button>
