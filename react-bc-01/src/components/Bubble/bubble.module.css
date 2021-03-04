@@ -1,0 +1,22 @@
+.speechBubble {
+	position: relative;
+	background: #fff;
+	border-radius: .4em;
+	border: 5px solid #45D994;
+	height: 30%;
+}
+
+.speechBubble:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 35px solid transparent;
+	border-top-color: #45D994;
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -17.5px;
+	margin-bottom: -35px;
+}

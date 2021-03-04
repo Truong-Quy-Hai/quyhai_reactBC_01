@@ -1,0 +1,11 @@
+.Character {
+  width: 200px;
+  height: 300px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+
+.CharacterImg {
+  height: 50%;
+}
